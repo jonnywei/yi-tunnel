@@ -1,0 +1,9 @@
+{
+  "local_address": "127.0.0.1",
+  "local_port": 4000,
+  "remote_address": "127.0.0.1",
+  "remote_port": 1030,
+  "tunnel_config": "ws://localhost:9999/tunnel2/go_tunnel",
+  "secret": "592f8f70-bf0f-4f74-8b93-782e8585596b",
+  "stream_count_per_channel": 20
+}

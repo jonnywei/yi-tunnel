@@ -1,0 +1,6 @@
+{
+  "listen": "127.0.0.1",
+  "port": 9999,
+  "path": "/tunnel2/go_tunnel",
+  "secret": "592f8f70-bf0f-4f74-8b93-782e8585596b"
+}
