@@ -6,7 +6,7 @@ import (
 	"github.com/gorilla/websocket"
 	"log"
 	"sync"
-	"yi-tunnel/common"
+	"yi_tunnel/common"
 )
 
 type WebSocketServerTunnel struct {

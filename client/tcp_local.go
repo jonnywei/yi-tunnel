@@ -5,7 +5,7 @@ import (
 	"log"
 	"net"
 	"strconv"
-	"yi-tunnel/common"
+	"yi_tunnel/common"
 )
 
 type TcpLocal struct {

@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"yi-tunnel/client"
-	"yi-tunnel/common"
+	"yi_tunnel/client"
+	"yi_tunnel/common"
 )
 
 func main() {

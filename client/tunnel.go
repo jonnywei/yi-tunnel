@@ -2,7 +2,7 @@ package client
 
 import (
 	"net"
-	"yi-tunnel/common"
+	"yi_tunnel/common"
 )
 
 type ITunnel interface {

@@ -8,7 +8,7 @@ import (
 	"net"
 	"sync"
 	"sync/atomic"
-	"yi-tunnel/common"
+	"yi_tunnel/common"
 )
 
 type WebSocketTunnel struct {

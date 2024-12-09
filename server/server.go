@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 	"strconv"
-	"yi-tunnel/common"
+	"yi_tunnel/common"
 )
 
 type WebSocketServer struct {

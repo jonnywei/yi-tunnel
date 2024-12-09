@@ -1,4 +1,4 @@
-package main
+package yi_tunnel
 
 import (
 	"encoding/json"
@@ -6,15 +6,15 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"yi_tunnel/client"
 	"yi_tunnel/common"
-	"yi_tunnel/server"
 )
 
 func main() {
 
-	var s common.ServerConfig
+	var s common.Config
 
-	configFlag := flag.String("sc", "./server_config.json", "config file")
+	configFlag := flag.String("c", "./config.json", "config file")
 
 	flag.Parse()
 
@@ -34,8 +34,12 @@ func main() {
 	}
 	fmt.Println(s)
 
-	server := server.WebSocketServer{Config: s}
+	tunnelPool := client.NewTunnelPool(&s)
+	go func() {
+		tcpLocal := client.NewTcpLocal(&s, tunnelPool)
+		tcpLocal.Listen()
 
-	server.Listen()
-
+	}()
+	udpLocal := client.NewUdpLocal(&s, tunnelPool)
+	udpLocal.Listen()
 }
