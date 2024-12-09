@@ -10,7 +10,7 @@ import (
 	"os"
 )
 
-func main() {
+func RunClient() {
 
 	var s common.Config
 
