@@ -2,10 +2,10 @@ package client
 
 import (
 	"fmt"
+	"github.com/jonnywei/yi_tunnel/common"
 	"log"
 	"net"
 	"strconv"
-	"yi_tunnel/common"
 )
 
 type UdpLocal struct {

@@ -1,8 +1,8 @@
 package client
 
 import (
+	"github.com/jonnywei/yi_tunnel/common"
 	"net"
-	"yi_tunnel/common"
 )
 
 type ITunnel interface {

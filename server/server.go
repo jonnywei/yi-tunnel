@@ -2,10 +2,10 @@ package server
 
 import (
 	"github.com/gorilla/websocket"
+	"github.com/jonnywei/yi_tunnel/common"
 	"log"
 	"net/http"
 	"strconv"
-	"yi_tunnel/common"
 )
 
 type WebSocketServer struct {

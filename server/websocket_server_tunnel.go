@@ -4,9 +4,9 @@ import (
 	"encoding/binary"
 	"errors"
 	"github.com/gorilla/websocket"
+	"github.com/jonnywei/yi_tunnel/common"
 	"log"
 	"sync"
-	"yi_tunnel/common"
 )
 
 type WebSocketServerTunnel struct {

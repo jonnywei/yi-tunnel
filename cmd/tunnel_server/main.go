@@ -4,10 +4,10 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"github.com/jonnywei/yi_tunnel/common"
+	"github.com/jonnywei/yi_tunnel/server"
 	"log"
 	"os"
-	"yi_tunnel/common"
-	"yi_tunnel/server"
 )
 
 func main() {

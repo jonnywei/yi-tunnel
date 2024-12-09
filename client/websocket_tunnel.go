@@ -4,11 +4,11 @@ import (
 	"encoding/binary"
 	"fmt"
 	"github.com/gorilla/websocket"
+	"github.com/jonnywei/yi_tunnel/common"
 	"log"
 	"net"
 	"sync"
 	"sync/atomic"
-	"yi_tunnel/common"
 )
 
 type WebSocketTunnel struct {

@@ -2,8 +2,8 @@ package client
 
 import (
 	"fmt"
+	"github.com/jonnywei/yi_tunnel/common"
 	"sync"
-	"yi_tunnel/common"
 )
 
 type TunnelPool struct {

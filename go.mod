@@ -1,4 +1,4 @@
-module yi_tunnel
+module github.com/jonnywei/yi_tunnel
 
 go 1.17
 
