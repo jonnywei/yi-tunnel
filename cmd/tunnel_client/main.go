@@ -1,45 +1,25 @@
 package main
 
 import (
-	"encoding/json"
-	"flag"
-	"fmt"
 	"github.com/jonnywei/yi_tunnel/client"
-	"github.com/jonnywei/yi_tunnel/common"
-	"log"
-	"os"
+	"time"
 )
 
 func main() {
 
-	var s common.Config
+	config := client.LoadConfigFile("./config.json")
+	client.RunClient(config)
+	time.Sleep(time.Second * 13)
+	client.Close()
+	time.Sleep(time.Second * 10)
+	client.RunClient(config)
+	time.Sleep(time.Second * 13)
+	client.Close()
 
-	configFlag := flag.String("c", "./config.json", "config file")
+	time.Sleep(time.Second * 10)
+	client.RunClient(config)
+	time.Sleep(time.Second * 13)
+	client.Close()
 
-	flag.Parse()
-
-	file, err := os.Open(*configFlag)
-	if err != nil {
-		log.Fatal("can't open config file", err)
-	}
-
-	defer file.Close()
-
-	decoder := json.NewDecoder(file)
-
-	err = decoder.Decode(&s)
-
-	if err != nil {
-		log.Fatal("can't decode config JSON: ", err)
-	}
-	fmt.Println(s)
-
-	tunnelPool := client.NewTunnelPool(&s)
-	go func() {
-		tcpLocal := client.NewTcpLocal(&s, tunnelPool)
-		tcpLocal.Listen()
-
-	}()
-	udpLocal := client.NewUdpLocal(&s, tunnelPool)
-	udpLocal.Listen()
+	select {}
 }

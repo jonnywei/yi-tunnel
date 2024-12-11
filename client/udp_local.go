@@ -13,18 +13,23 @@ type UdpLocal struct {
 	udpAddr    *net.UDPAddr
 	conn       *net.UDPConn
 	tunnelPool *TunnelPool
+	quitChan   chan bool
+	exitedChan chan bool
 }
 
 func NewUdpLocal(config *common.Config, tunnelPool *TunnelPool) *UdpLocal {
 
-	tcpLocal := UdpLocal{config: config}
+	tcpLocal := UdpLocal{config: config,
+		quitChan:   make(chan bool),
+		exitedChan: make(chan bool),
+	}
 	tcpLocal.tunnelPool = tunnelPool
 	return &tcpLocal
 }
 
 func (u *UdpLocal) Listen() {
 	u.udpAddr, _ = net.ResolveUDPAddr("udp", u.config.Local_address+":"+strconv.Itoa(u.config.Local_port))
-	fmt.Println("udp listen:" + u.config.Local_address + ":" + strconv.Itoa(u.config.Local_port))
+	fmt.Println("UDP Listen:" + u.config.Local_address + ":" + strconv.Itoa(u.config.Local_port))
 	conn, err := net.ListenUDP("udp", u.udpAddr)
 	u.conn = conn
 	if err != nil {
@@ -62,4 +67,10 @@ func (u *UdpLocal) handleConnection(addr *net.UDPAddr, message []byte) {
 
 func (u *UdpLocal) WriteToLocal(addr *net.UDPAddr, message []byte) {
 	u.conn.WriteToUDP(message, addr)
+}
+
+// close tcplocal
+func (u *UdpLocal) Close() {
+	//u.conn.Close()
+	log.Println("udp local server closed")
 }
