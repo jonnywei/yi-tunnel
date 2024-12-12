@@ -60,7 +60,7 @@ func (tcpLocal *TcpLocal) Listen() error {
 			go tcpLocal.handleConnection(c)
 		}
 	}
-	fmt.Println("go here")
+	fmt.Println("tcp routine go here")
 	defer conn.Close()
 
 	return nil

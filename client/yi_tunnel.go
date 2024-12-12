@@ -43,10 +43,10 @@ func RunClient(s common.Config) {
 	tcpLocal = NewTcpLocal(&s, tunnelPool)
 	udpLocal = NewUdpLocal(&s, tunnelPool)
 	go tcpLocal.Listen()
-	//go udpLocal.Listen()
+	go udpLocal.Listen()
 }
 
 func Close() {
 	tcpLocal.Close()
-	//udpLocal.Close()
+	udpLocal.Close()
 }
