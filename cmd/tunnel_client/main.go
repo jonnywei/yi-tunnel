@@ -6,20 +6,20 @@ import (
 )
 
 func main() {
-
-	config := client.LoadConfigFile("./config.json")
-	client.RunClient(config)
+	ytc := client.NewYiTunnelClient("./config.json")
+	ytc.LoadConfigFile()
+	ytc.ListenAndServe()
 	time.Sleep(time.Second * 13)
-	client.Close()
+	ytc.Close()
 	time.Sleep(time.Second * 10)
-	client.RunClient(config)
+	ytc.ListenAndServe()
 	time.Sleep(time.Second * 13)
-	client.Close()
+	ytc.Close()
 
 	time.Sleep(time.Second * 10)
-	client.RunClient(config)
+	ytc.ListenAndServe()
 	time.Sleep(time.Second * 13)
-	client.Close()
+	ytc.Close()
 
 	select {}
 }

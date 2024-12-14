@@ -9,13 +9,22 @@ import (
 	"os"
 )
 
-var tcpLocal *TcpLocal
-var udpLocal *UdpLocal
+type YiTunnelClient struct {
+	tcpLocal *TcpLocal
+	udpLocal *UdpLocal
+	config   *common.Config
+	filePath string
+}
 
-func LoadConfigFile(configFile string) common.Config {
+func NewYiTunnelClient(configFile string) *YiTunnelClient {
+	ytc := &YiTunnelClient{filePath: configFile}
+	return ytc
+}
+
+func (ytc *YiTunnelClient) LoadConfigFile() {
 	var s common.Config
 
-	configFlag := flag.String("c", configFile, "config file")
+	configFlag := flag.String("c", ytc.filePath, "config file")
 
 	flag.Parse()
 
@@ -35,18 +44,20 @@ func LoadConfigFile(configFile string) common.Config {
 	}
 	fmt.Println(s)
 
-	return s
+	ytc.config = &s
 
 }
-func RunClient(s common.Config) {
-	tunnelPool := NewTunnelPool(&s)
-	tcpLocal = NewTcpLocal(&s, tunnelPool)
-	udpLocal = NewUdpLocal(&s, tunnelPool)
+func (ytc *YiTunnelClient) ListenAndServe() {
+	tunnelPool := NewTunnelPool(ytc.config)
+	var tcpLocal = NewTcpLocal(ytc.config, tunnelPool)
+	var udpLocal = NewUdpLocal(ytc.config, tunnelPool)
+	ytc.tcpLocal = tcpLocal
+	ytc.udpLocal = udpLocal
 	go tcpLocal.Listen()
 	go udpLocal.Listen()
 }
 
-func Close() {
-	tcpLocal.Close()
-	udpLocal.Close()
+func (ytc *YiTunnelClient) Close() {
+	ytc.tcpLocal.Close()
+	ytc.udpLocal.Close()
 }
